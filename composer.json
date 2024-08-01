@@ -1,5 +1,5 @@
 {
-    "name": "marcelovani/behat-teams-notifier",
+    "name": "maniprakash-alshaya/behat-teams-notifier",
     "version": "1.0.0",
     "type": "library",
     "description": "Extension for behat to send MS Teams notifications",
@@ -13,11 +13,11 @@
         "Notifications",
         "Messages"
     ],
-    "homepage": "https://github.com/marcelovani/behat-teams-notifier",
+    "homepage": "https://github.com/maniprakash-alshaya/behat-teams-notifier",
     "license": "MIT",
     "authors": [
         {
-            "name": "Marcelo Vani",
+            "name": "Mani",
             "role": "Developer"
         }
     ],
