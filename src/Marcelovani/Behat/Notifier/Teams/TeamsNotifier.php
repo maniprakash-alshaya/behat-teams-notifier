@@ -137,6 +137,11 @@ class TeamsNotifier
             case 'onBeforeSuiteTested';
                 $this->failedScenarios = [];
                 $message = $this->getSuiteStartMessage();
+
+                $message['sections'][0]['facts'][] = [
+                    'name' => 'Current Job',
+                    'value' => $event->getFeature()->getTitle(),
+                ];
                 break;
 
             case 'onAfterSuiteTested';
@@ -144,7 +149,7 @@ class TeamsNotifier
                 break;
 
             case 'onAfterScenarioTested';
-                if (!$event->getTestResult()->isPassed()) {
+                //if (!$event->getTestResult()->isPassed()) {
 
                     // Prepare payload.
                     $payload = [
@@ -172,7 +177,7 @@ class TeamsNotifier
 
                     $message = $this->getFailedScenarioMessage($payload);
                     $this->failedScenarios[] = $payload['feature'];
-                }
+                //}
                 break;
 
             default:
@@ -210,7 +215,7 @@ class TeamsNotifier
     public function getSuiteFinishedMessage(TestworkEvent\SuiteTested $event)
     {
         $message = $this->getDefaultMessage();
-        $message['summary'] = "Automation job finished";
+        $message['summary'] = "Automation job finished - Cloud Testing";
         $message['sections'][0]['activityTitle'] = $message['summary'];
 
         // Check for failed scenarios.
@@ -218,7 +223,7 @@ class TeamsNotifier
             $message['themeColor'] = '#ff0000';
             $message['sections'][0]['facts'][] = [
                 'name' => 'Outcome',
-                'value' => 'Failed',
+                'value' => 'Failed - '. $event->getFeature()->getTitle(),
             ];
             foreach ($this->failedScenarios as $item) {
                 $message['sections'][0]['facts'][] = [
@@ -230,7 +235,7 @@ class TeamsNotifier
             $message['themeColor'] = '#00ff00';
             $message['sections'][0]['facts'][] = [
                 'name' => 'Outcome',
-                'value' => 'Passed',
+                'value' => 'Passed - '. $event->getFeature()->getTitle(),
             ];
         }
 
@@ -248,7 +253,7 @@ class TeamsNotifier
     public function getFailedScenarioMessage($payload)
     {
         $message = $this->getDefaultMessage();
-        $message['summary'] = "Scenario failed";
+        $message['summary'] = "Scenario failed  - ".$payload['feature'];
         $message['sections'][0]['activityTitle'] = $payload['feature'];
         $message['sections'][0]['activitySubtitle'] = $payload['description'];
         $message['sections'][0]['activityImage'] = 'https://uxwing.com/wp-content/themes/uxwing/download/education-school/failed-icon.png';
