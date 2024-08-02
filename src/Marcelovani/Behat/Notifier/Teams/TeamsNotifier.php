@@ -137,6 +137,11 @@ class TeamsNotifier
             case 'onBeforeSuiteTested';
                 $this->failedScenarios = [];
                 $message = $this->getSuiteStartMessage();
+
+                $message['sections'][0]['facts'][] = [
+                    'name' => 'Current Job',
+                    'value' => $event->getFeature()->getTitle(),
+                ];
                 break;
 
             case 'onAfterSuiteTested';
@@ -144,7 +149,7 @@ class TeamsNotifier
                 break;
 
             case 'onAfterScenarioTested';
-                if (!$event->getTestResult()->isPassed()) {
+                //if (!$event->getTestResult()->isPassed()) {
 
                     // Prepare payload.
                     $payload = [
@@ -172,7 +177,7 @@ class TeamsNotifier
 
                     $message = $this->getFailedScenarioMessage($payload);
                     $this->failedScenarios[] = $payload['feature'];
-                }
+                //}
                 break;
 
             default:
