@@ -137,10 +137,11 @@ class TeamsNotifier
             case 'onBeforeSuiteTested';
                 $this->failedScenarios = [];
                 $message = $this->getSuiteStartMessage();
-
+                $message['sections'][0]['activitySubtitle'] = $event->getFeature()->getDescription();
+                $message['sections'][0]['activityImage'] = 'https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/start-button-icon.png';
                 $message['sections'][0]['facts'][] = [
-                    'name' => 'Current Job',
-                    'value' => $event->getFeature()->getTitle(),
+                    'name' => 'Something Goes Here : ',
+                    'value' => 'TEST VALUE',
                 ];
                 break;
 
