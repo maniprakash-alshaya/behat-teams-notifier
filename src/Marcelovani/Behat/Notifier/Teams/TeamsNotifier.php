@@ -137,12 +137,6 @@ class TeamsNotifier
             case 'onBeforeSuiteTested';
                 $this->failedScenarios = [];
                 $message = $this->getSuiteStartMessage();
-                $message['sections'][0]['activitySubtitle'] = $event->getFeature()->getDescription();
-                $message['sections'][0]['activityImage'] = 'https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/start-button-icon.png';
-                $message['sections'][0]['facts'][] = [
-                    'name' => 'Something Goes Here : ',
-                    'value' => 'TEST VALUE',
-                ];
                 break;
 
             case 'onAfterSuiteTested';
@@ -200,6 +194,7 @@ class TeamsNotifier
         $message['summary'] = "Automation job started - Cloud Testing";
         $message['sections'][0]['activityTitle'] = $message['summary'];
         $message['themeColor'] = '#ff9933';
+        $message['sections'][0]['activityImage'] = 'https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/start-button-icon.png';
 
         return $message;
     }
