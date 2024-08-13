@@ -191,9 +191,10 @@ class TeamsNotifier
     public function getSuiteStartMessage()
     {
         $message = $this->getDefaultMessage();
-        $message['summary'] = "Automation job started - Cloud Testing";
+        $message['summary'] = "Automation Build Started - Cloud Testing";
         $message['sections'][0]['activityTitle'] = $message['summary'];
         $message['themeColor'] = '#ff9933';
+        $message['sections'][0]['activityImage'] = 'https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/start-button-icon.png';
 
         return $message;
     }
